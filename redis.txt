@@ -1,0 +1,31 @@
+安装docker
+搜索redis镜像（docker search  redis）
+下载redis镜像 （docker pull redis:latest）
+在这个目录/usr/local/etc/redis/下添加redis.conf 文件
+
+在跟目录下创建redis文件夹，如/root/redis
+
+
+
+cd /root/redis
+运行命令
+
+docker run -p 6379:6379 -v /myredis/conf/redis.conf:/usr/local/etc/redis/redis.conf --name myredis redis redis-server /usr/local/etc/redis/redis.conf
+
+命令说明：
+
+-p 6379:6379 :将容器的6379端口映射到主机的6379端口
+
+
+
+
+注意redis.conf
+注释bind 127.0.0.1 让其他机器可以访问
+注释protected  no 表示不需要登陆验证
+
+
+docker run -it redis redis-cli -h 192.168.7.154(验证连接到redis)
+如果出现以下错误：
+docker run -it redis redis-cli -h 192.168.7.154
+执行以下命令：
+iptables -F
